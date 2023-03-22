@@ -3,6 +3,8 @@
   <head>
     <title>항목별 수량 관리</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
     <style>
       table {
         border-collapse: collapse;
@@ -63,24 +65,25 @@
         font-size: 16px;
         font-weight: bold;
       }
-      @media (max-width: 768px) {
+      @media screen and (max-width: 480px) {
+  /* 표 크기 조절 */
   table {
-    font-size: 12px;
+    width: 100%;
   }
   
+  /* 셀 크기 조절 */
   th, td {
-    padding: 4px;
-  }
-  
-  td button {
+    padding: 6px;
     font-size: 12px;
   }
   
+  /* 출력 버튼 크기 조절 */
   button.print {
     font-size: 14px;
-    padding: 10px 16px;
+    padding: 8px 16px;
   }
   
+  /* 출력 결과 폰트 크기 조절 */
   div.result {
     font-size: 14px;
   }
