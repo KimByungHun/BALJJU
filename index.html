@@ -130,24 +130,27 @@
       }
       
       /*스크립트 이용해서 더블터치 방지*/
-var table = document.getElementsByTagName('table')[0];
-table.addEventListener('touchstart', function(event) {
-  if (event.touches.length > 1) {
-    event.preventDefault();
-  }
-}, { passive: false });
-      
-      
-            /* 더블터치 방지 오류 수정*/
-
-      document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
   var table = document.getElementsByTagName('table')[0];
+  var touchStartX = 0;
+  var touchStartY = 0;
+  var touchMoveX = 0;
+  var touchMoveY = 0;
+
   table.addEventListener('touchstart', function(event) {
-    if (event.touches.length > 1) {
+    touchStartX = event.touches[0].clientX;
+    touchStartY = event.touches[0].clientY;
+  });
+
+  table.addEventListener('touchmove', function(event) {
+    touchMoveX = event.touches[0].clientX;
+    touchMoveY = event.touches[0].clientY;
+    if (Math.abs(touchStartX - touchMoveX) > Math.abs(touchStartY - touchMoveY)) {
       event.preventDefault();
     }
-  }, { passive: false });
+  });
 });
+
 
 
       
