@@ -214,14 +214,29 @@ table tr:nth-child(n+63):nth-child(-n+71) {
         quantityEl.innerHTML = items[index].quantity + " " ;
       }
       
+function getCurrentDate() {
+  var today = new Date();
+  var month = today.getMonth() + 1;
+  var day = today.getDate();
+  return month + "월 " + day + "일";
+}
+      
       function printResult() {
+        
+
+        
         var result = "";
+                  result += "클랩피자 청담점  \"" + getCurrentDate() + "\" 공산품 발주<br>-----------------<br>";
+
         for (var i = 0; i < items.length; i++) {
           if (items[i].quantity > 0) {
             result += items[i].name + " " + items[i].quantity + items[i].unit + "<br>";
           }
         }
+          result += "<br>-----------------<br>발주 부탁드립니다";
+
         document.getElementById("result").innerHTML = result;
+        
       }
       
       /*스크립트 이용해서 더블터치 방지*/
