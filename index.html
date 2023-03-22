@@ -151,20 +151,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
       
-      document.documentElement.addEventListener('touchstart', function (event) {
-     if (event.touches.length > 1) {
-          event.preventDefault(); 
-        } 
-    }, false);
 
-var lastTouchEnd = 0; 
-
-document.documentElement.addEventListener('touchend', function (event) {
-     var now = (new Date()).getTime();
-     if (now - lastTouchEnd <= 300) {
-          event.preventDefault(); 
-        } lastTouchEnd = now; 
-    }, false);
 
 
 
@@ -190,6 +177,13 @@ document.documentElement.addEventListener('touchend', function (event) {
             document.write("<td><button onclick='increaseQuantity(" + i + ")'>+</button><button onclick='decreaseQuantity(" + i + ")'>-</button></td>");
             document.write("</tr>");
           }
+          
+          if ('addEventListener' in document) {
+	document.addEventListener('DOMContentLoaded', function() {
+		FastClick.attach(document.body);
+	}, false);
+}
+          
         </script>
       </tbody>
     </table>
