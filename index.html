@@ -130,12 +130,25 @@
       }
       
       /*스크립트 이용해서 더블터치 방지*/
-      var table = document.getElementsByTagName('table')[0];
+var table = document.getElementsByTagName('table')[0];
 table.addEventListener('touchstart', function(event) {
   if (event.touches.length > 1) {
     event.preventDefault();
   }
 }, { passive: false });
+      
+      
+            /* 더블터치 방지 오류 수정*/
+
+      document.addEventListener('DOMContentLoaded', function() {
+  var table = document.getElementsByTagName('table')[0];
+  table.addEventListener('touchstart', function(event) {
+    if (event.touches.length > 1) {
+      event.preventDefault();
+    }
+  }, { passive: false });
+});
+
 
       
     </script>
