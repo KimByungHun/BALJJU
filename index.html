@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>항목별 수량 관리</title>
+    <meta charset="UTF-8">
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-bottom: 20px;
+      }
+      
+      th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+      }
+      
+      th {
+        background-color: #f2f2f2;
+      }
+      
+      td.quantity {
+        font-weight: bold;
+      }
+      
+      td button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 4px 8px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 2px;
+        cursor: pointer;
+      }
+      
+      td button:hover {
+        background-color: #3e8e41;
+      }
+      
+      button.print {
+        background-color: #008CBA;
+        border: none;
+        color: white;
+        padding: 12px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-top: 20px;
+        cursor: pointer;
+      }
+      
+      button.print:hover {
+        background-color: #006983;
+      }
+      
+      div.result {
+        margin-top: 20px;
+        font-size: 16px;
+        font-weight: bold;
+      }
+      @media (max-width: 768px) {
+  table {
+    font-size: 12px;
+  }
+  
+  th, td {
+    padding: 4px;
+  }
+  
+  td button {
+    font-size: 12px;
+  }
+  
+  button.print {
+    font-size: 14px;
+    padding: 10px 16px;
+  }
+  
+  div.result {
+    font-size: 14px;
+  }
+}
+
+    </style>
+    <script>
+      var items = [
+        { name: "사과", unit: "개", quantity: 0 },
+        { name: "바나나", unit: "송이", quantity: 0 },
+        { name: "포도", unit: "단", quantity: 0 },
+        // 추가적인 항목들...
+      ];
+      
+      function increaseQuantity(index) {
+        items[index].quantity++;
+        updateQuantity(index);
+      }
+      
+      function decreaseQuantity(index) {
+        if (items[index].quantity > 0) {
+          items[index].quantity--;
+          updateQuantity(index);
+        }
+      }
+      
+      function updateQuantity(index) {
+        var quantityEl = document.getElementById("quantity-" + index);
+        quantityEl.innerHTML = items[index].quantity + " " ;
+      }
+      
+      function printResult() {
+        var result = "";
+        for (var i = 0; i < items.length; i++) {
+          if (items[i].quantity > 0) {
+            result += items[i].name + " " + items[i].quantity + items[i].unit + "<br>";
+          }
+        }
+        document.getElementById("result").innerHTML = result;
+      }
+    </script>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>항목명</th>
+          <th>수량</th>
+          <th>증감</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 항목들을 동적으로 생성 -->
+        <script>
+          for (var i = 0; i < items.length; i++) {
+            document.write("<tr>");
+            document.write("<td>" + items[i].name + "</td>");
+            document.write("<td class='quantity' id='quantity-" + i + "'>" + items[i].quantity + " " + "</td>");
+            document.write("<td><button onclick='increaseQuantity(" + i + ")'>+</button><button onclick='decreaseQuantity(" + i + ")'>-</button></td>");
+            document.write("</tr>");
+          }
+        </script>
+      </tbody>
+    </table>
+    <button class="print" onclick="printResult()">출력</button>
+    <div class="result" id="result"></div>
+  </body>
+</html>
